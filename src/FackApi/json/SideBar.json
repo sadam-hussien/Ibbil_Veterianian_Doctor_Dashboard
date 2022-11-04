@@ -1,0 +1,57 @@
+[
+  {
+    "title": "dashboard",
+    "name": "main.sidebar.dashboard",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "index"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-home",
+    "userType": "both",
+    "storeStatues": "completed"
+  },
+  {
+    "title": "books",
+    "name": "main.sidebar.books",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "books"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-user-friends",
+    "userType": "both",
+    "storeStatues": "completed"
+  },  
+  {
+    "title": "financialOperations",
+    "name": "main.sidebar.financialOperations",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "financialOperations"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-wallet",
+    "userType": "both",
+    "storeStatues": "completed"
+  },
+  {
+    "title": "settings",
+    "name": "main.sidebar.settings",
+    "is_heading": false,
+    "is_active": false,
+    "link": {
+      "name": "setting"
+    },
+    "class_name": "",
+    "is_icon_class": true,
+    "icon": "las la-tools",
+    "storeStatues": "completed"
+  }
+]
