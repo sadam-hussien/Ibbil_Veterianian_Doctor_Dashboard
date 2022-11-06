@@ -103,7 +103,7 @@
                         name="detectionMethod"
                         class="detection-custom-radio d-flex align-items-center"
                       ></b-form-radio-group>
-                      <div class="d-flex align-items-center gap_2 setting-box-inp-detection-time">
+                      <div class="d-flex align-items-center gap_2 setting-box-inp-detection-time" v-if="selectedDetectionMethod === 'appointment'">
                         <h6 class="setting-box-title setting-box-title-detection-time font-size-16">مدة الكشف</h6>
                         <div class="d-flex align-items-center gap_2">
                           <div class="d-flex align-items-center gap_1">
@@ -233,7 +233,7 @@
             <div>
               <b-row>
                 <b-col md="4" class="mb-4" v-for="(itemFile, index) in requiredDocuments" :key="index">
-                  <img-upload-box :data="itemFile" :index="index" />
+                  <img-upload-box :data="itemFile" :index="index" @uploadDocument="uploadDocument" />
                 </b-col>
               </b-row>
             </div>
@@ -251,6 +251,7 @@
 import { core } from '@/config/pluginInit'
 import doctorApi from '../services/settings'
 import imgUploadBox from '../components/imgUploadBox'
+import axios from 'axios'
 export default {
   mounted () {
     core.index()
@@ -290,7 +291,8 @@ export default {
         time_24hr: false,
         defaultDate: '14:30'
       },
-      requiredDocuments: null
+      requiredDocuments: null,
+      uploadedDcouments: []
     }
   },
   methods: {
@@ -305,8 +307,16 @@ export default {
     getRequiredDocuments () {
       doctorApi.getRequiredDocuments().then(response => {
         this.requiredDocuments = response.data.data
-        console.log(response.data)
       })
+    },
+    uploadDocument (file) {
+      const fileExist = this.uploadedDcouments.find(f => f.doc_id === file.doc_id)
+      if (fileExist) {
+        const docs = this.uploadedDcouments.filter(item => item.doc_id === file.doc_id)
+        this.uploadedDcouments = docs
+      } else {
+        this.uploadedDcouments.push(file)
+      }
     },
     onSubmit () {
       this.loadingButtonSubmit = true
@@ -342,11 +352,20 @@ export default {
         examine_method: this.selectedDetectionMethod,
         ...doctorServices
       }
-      doctorApi.updateDoctorInfo(payload).then(res => {
-        core.showSnackbar('success', res.data.message)
-      }).finally(() => {
+      if (this.requiredDocuments && this.requiredDocuments.length === this.uploadedDcouments.length) {
+        axios.all([
+          doctorApi.updateDoctorInfo(payload),
+          doctorApi.updateDoctorDocuments({ documents: this.uploadedDcouments })
+        ]).then(axios.spread((reponse1, response2) => {
+          core.showSnackbar('success', reponse1.data.message)
+          core.showSnackbar('success', response2.data.message)
+        })).finally(() => {
+          this.loadingButtonSubmit = false
+        })
+      } else {
+        core.showSnackbar('error', 'please upload your all documents')
         this.loadingButtonSubmit = false
-      })
+      }
     }
   },
   watch: {

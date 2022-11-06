@@ -18,5 +18,14 @@ export default {
   },
   getRequiredDocuments () {
     return marketPlace().get('acceptance-docs?required_for=doctors')
+  },
+  uploadDotorDocument (payload) {
+    return marketPlace().post('upload', payload)
+  },
+  updateDoctorDocuments (payload) {
+    return marketPlace().post('doctors/documents', payload)
+  },
+  getDcotorReservation () {
+    return marketPlace().get('doctor/reservations')
   }
 }
