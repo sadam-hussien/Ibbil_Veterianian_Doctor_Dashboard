@@ -29,11 +29,11 @@ export function singleSignOn () {
   })
   return apiClient
 }
-export function marketPlace () {
+export function veterainary () {
   const apiClient = axios.create({
     // http://172.16.100.57:3000/api/v1/
     // http://api.marketplace.ibbil.dev.dafa.sa:6010/api/v1/
-    baseURL: process.env.VUE_APP_MARKETPLACE_LINK,
+    baseURL: process.env.VUE_APP_VETE_LINK,
     headers: {
       Authorization: `Bearer ${JSON.parse(localStorage.getItem('userToken')) ? JSON.parse(localStorage.getItem('userToken')) : null}`,
       Accept: 'application/json',

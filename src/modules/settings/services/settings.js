@@ -1,31 +1,31 @@
-import { marketPlace } from '@/axios'
+import { veterainary } from '@/axios'
 
 export default {
   uploadMarketplaceFiles (payload) {
-    return marketPlace().patch('merchant/stores', payload)
+    return veterainary().patch('merchant/stores', payload)
   },
   getMerchantInfo () {
-    return marketPlace().get('merchant/info')
+    return veterainary().get('merchant/info')
   },
   changeDefaultStore (payload) {
-    return marketPlace().patch('merchant/change-default-store', payload)
+    return veterainary().patch('merchant/change-default-store', payload)
   },
   getDoctorInfo () {
-    return marketPlace().get('doctors')
+    return veterainary().get('doctors')
   },
   updateDoctorInfo (payload) {
-    return marketPlace().patch('doctors', payload)
+    return veterainary().patch('doctors', payload)
   },
   getRequiredDocuments () {
-    return marketPlace().get('acceptance-docs?required_for=doctors')
+    return veterainary().get('acceptance-docs?required_for=doctors')
   },
   uploadDotorDocument (payload) {
-    return marketPlace().post('upload', payload)
+    return veterainary().post('upload', payload)
   },
   updateDoctorDocuments (payload) {
-    return marketPlace().post('doctors/documents', payload)
+    return veterainary().post('doctors/documents', payload)
   },
   getDcotorReservation () {
-    return marketPlace().get('doctor/reservations')
+    return veterainary().get('doctor/reservations')
   }
 }

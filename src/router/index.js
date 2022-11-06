@@ -2,15 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import auth from '@/modules/auth/auth.routes'
 import dashboardRoutes from '@/modules/dashboard/dashboard.routes'
-import productRoutes from '@/modules/products/products.routes'
-import orderRoutes from '@/modules/orders/order.routes'
-import offersRoutes from '@/modules/offers/offers.routes'
-import discountsRoutes from '@/modules/discounts/discounts.routes'
-import withdrawRoutes from '@/modules/withdraw/withdraw.routes'
-import reviewsRoutes from '@/modules/reviews/reviews.routes'
 import settingsRoutes from '@/modules/settings/settings.routes'
-import completeInformationRoutes from '@/modules/completeInformation/completeInformation.routes'
-import processingRoutes from '@/modules/processing/processing.routes'
 import booksRoutes from '@/modules/books/books.routes'
 import financialOperationsRoutes from '@/modules/financialOperations/financialOperations.routes'
 /* Extra Pages */
@@ -21,15 +13,7 @@ Vue.use(VueRouter)
 const routes = [
   ...auth,
   ...dashboardRoutes,
-  ...productRoutes,
-  ...orderRoutes,
-  ...offersRoutes,
-  ...withdrawRoutes,
-  ...reviewsRoutes,
   ...settingsRoutes,
-  ...completeInformationRoutes,
-  ...processingRoutes,
-  ...discountsRoutes,
   ...booksRoutes,
   ...financialOperationsRoutes,
   {

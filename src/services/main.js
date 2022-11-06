@@ -1,22 +1,22 @@
-import { marketPlace } from '@/axios'
+import { veterainary } from '@/axios'
 
 export default {
   listDataTabl (url, filter) {
-    return marketPlace().get(url, {
+    return veterainary().get(url, {
       params: filter
     })
   },
   commonUploadFiles (payload, config) {
-    return marketPlace().post('media-files/upload', payload, config)
+    return veterainary().post('media-files/upload', payload, config)
   },
   removeImage (id, type) {
-    return marketPlace().get(`remove-image/${id}/${type}`)
+    return veterainary().get(`remove-image/${id}/${type}`)
   },
   removeRow (url, rowId) {
     console.log(url, rowId)
-    return marketPlace().delete(`${url}/${rowId}`)
+    return veterainary().delete(`${url}/${rowId}`)
   },
   changeStatus (payload) {
-    return marketPlace().post('change-status', payload)
+    return veterainary().post('change-status', payload)
   }
 }
