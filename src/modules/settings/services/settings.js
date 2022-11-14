@@ -1,15 +1,6 @@
 import { veterainary } from '@/axios'
 
 export default {
-  uploadMarketplaceFiles (payload) {
-    return veterainary().patch('merchant/stores', payload)
-  },
-  getMerchantInfo () {
-    return veterainary().get('merchant/info')
-  },
-  changeDefaultStore (payload) {
-    return veterainary().patch('merchant/change-default-store', payload)
-  },
   getDoctorInfo () {
     return veterainary().get('doctors')
   },

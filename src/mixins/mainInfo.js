@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     getInfo () {
-      settingServices.getMerchantInfo().then(res => {
+      settingServices.getDoctorInfo().then(res => {
         console.log('user_12345 =>', res)
         this.myStores = res.data.stores
         const selectedStoreIndex = res.data.stores.findIndex(store => {

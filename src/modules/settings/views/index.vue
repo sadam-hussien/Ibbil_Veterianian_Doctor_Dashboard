@@ -28,13 +28,31 @@
                         />
                       </b-col>
                       <b-col  xl="6">
-                        <input-form
+                        <b-row>
+                          <b-col lg="8">
+                            <input-form
                             class="mb-3 joining-label"
                             v-model="userData.primary_phone_number"
                             validate="required|numeric"
                             name="phone"
                             placeholder="433423556232" label="رقم الهاتف"
                         />
+                          </b-col>
+                          <b-col lg="4">
+                            <div class="d-flex flex-column">
+                              <label >رمز الدولة</label>
+                              <vue-country-code
+                                  v-model="code"
+                                  @onSelect="onSelect"
+                                  :onlyCountries="['sa', 'eg']"
+                                  :dropdownOptions="{ disabledDialCode: true }"
+                                  :enabledCountryCode= true
+                                  defaultCountry="sa"
+                                  class="testphone"
+                              />
+                            </div>
+                          </b-col>
+                        </b-row>
                       </b-col>
                       <b-col  xl="6">
                         <input-form
@@ -46,13 +64,31 @@
                         />
                       </b-col>
                       <b-col  xl="6">
-                        <input-form
-                          class="mb-3 joining-label"
-                          v-model="userData.secondary_phone_number"
-                          :validate="'numeric'"
-                          name="phone2"
-                          placeholder="991348741947" label="رقم هاتف اخر"
-                        />
+                        <b-row>
+                          <b-col lg="8">
+                            <input-form
+                              class="mb-3 joining-label"
+                              v-model="userData.secondary_phone_number"
+                              :validate="'numeric'"
+                              name="phone2"
+                              placeholder="991348741947" label="رقم هاتف اخر"
+                            />
+                          </b-col>
+                          <b-col lg="4">
+                            <div class="d-flex flex-column">
+                              <label >رمز الدولة</label>
+                              <vue-country-code
+                                  v-model="code"
+                                  @onSelect="onSelect"
+                                  :onlyCountries="['sa', 'eg']"
+                                  :dropdownOptions="{ disabledDialCode: true }"
+                                  :enabledCountryCode= true
+                                  defaultCountry="sa"
+                                  class="testphone"
+                              />
+                            </div>
+                          </b-col>
+                        </b-row>
                       </b-col>
                       <b-col  md="12">
                         <input-form
@@ -292,10 +328,18 @@ export default {
         defaultDate: '14:30'
       },
       requiredDocuments: null,
-      uploadedDcouments: []
+      uploadedDcouments: [],
+      code: ''
     }
   },
   methods: {
+    onSelect ({ name, dialCode }) {
+      const countryCode = {
+        20: '002',
+        966: '00966'
+      }
+      this.code = countryCode[dialCode]
+    },
     addTimeOfWork (idx) {
       this.work_times[idx].working_periods.push({ from: '', to: '' })
     },
